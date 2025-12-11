@@ -3,53 +3,23 @@
 @tailwind utilities;
 
 @layer base {
-  /* Smooth scrolling for anchor links */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Better text rendering */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
-  /* Improve selection color */
   ::selection {
     background-color: #292524;
     color: #fafaf9;
   }
 
-  /* Better focus outline */
   *:focus-visible {
     outline: 2px solid #292524;
     outline-offset: 2px;
   }
-}
-
-@layer utilities {
-  /* Custom text balance for headlines */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Drop cap utility for articles */
-  .drop-cap::first-letter {
-    float: left;
-    font-size: 4em;
-    line-height: 0.85;
-    margin: 0.1em 0.1em 0 0;
-    font-weight: bold;
-  }
-}
-
-/* Newspaper-style pull quotes */
-.pull-quote {
-  border-left: 4px solid #292524;
-  padding-left: 1.5rem;
-  margin: 2rem 0;
-  font-size: 1.25rem;
-  font-style: italic;
-  color: #57534e;
 }
