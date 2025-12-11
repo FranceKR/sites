@@ -1,13 +1,13 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
-const TypingAnimation = () => {
-  const [displayText, setDisplayText] = React.useState('');
-  const [currentPhase, setCurrentPhase] = React.useState('typing-france');
+export default function TypingAnimation() {
+  const [displayText, setDisplayText] = useState('');
+  const [currentPhase, setCurrentPhase] = useState('typing-france');
   
   const text1 = 'France Khalil';
   const text2 = 'prans kalil';
   
-  React.useEffect(() => {
+  useEffect(() => {
     let timeout;
     
     if (currentPhase === 'typing-france') {
@@ -39,11 +39,9 @@ const TypingAnimation = () => {
   const isItalic = currentPhase.includes('prans');
   
   return (
-    <h1 className={`text-5xl sm:text-6xl md:text-7xl font-serif ${isItalic ? 'italic' : ''}`} 
+    <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-serif ${isItalic ? 'italic' : ''}`} 
         style={{ fontFamily: 'Playfair Display, serif', minHeight: '1.2em' }}>
       {displayText}<span className="animate-pulse">|</span>
     </h1>
   );
-};
-
-export default TypingAnimation;
+}

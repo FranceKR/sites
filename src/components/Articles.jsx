@@ -1,8 +1,6 @@
-import React from 'react';
 import ArticleCard from './ArticleCard';
-import { articlesDatabase } from '../data/articles';
 
-function ArticleGrid({ articles, onArticleClick, showMore, onShowMore }) {
+export default function Articles({ articles, onArticleClick, showMore, onShowMore }) {
   return (
     <section id="articles" className="mb-20">
       <div className="flex items-center gap-4 mb-12">
@@ -31,5 +29,3 @@ function ArticleGrid({ articles, onArticleClick, showMore, onShowMore }) {
     </section>
   );
 }
-
-export default ArticleGrid;

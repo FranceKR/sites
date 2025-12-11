@@ -1,8 +1,15 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import TypingAnimation from './TypingAnimation';
 
-const Header = () => {
-  const today = new Date().toLocaleDateString('en-US', {
+export default function Header() {
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setDate(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const dateStr = date.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -10,71 +17,48 @@ const Header = () => {
   });
 
   return (
-    <header className="border-b-4 border-double border-stone-900 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Top info bar */}
-        <div className="flex justify-between items-center text-xs sm:text-sm text-stone-600 mb-4">
-          <div className="flex items-center gap-4">
-            <span>{today}</span>
-            <span className="hidden sm:inline">Vol. I, No. 1</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="hidden sm:inline">Portfolio Edition</span>
-            <span>Free</span>
+    <header className="border-b-4 border-double border-stone-900 bg-white sticky top-0 z-50 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Masthead */}
+        <div className="border-b border-stone-200 py-3">
+          <div className="flex justify-between items-center text-xs text-stone-600">
+            <div className="flex items-center gap-3">
+              <span className="font-medium">{dateStr}</span>
+              <span className="hidden sm:inline text-stone-400">|</span>
+              <span className="hidden sm:inline">Vol. I, No. 1</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="hidden md:inline">Portfolio Edition</span>
+              <span className="hidden sm:inline text-stone-400">|</span>
+              <span className="font-bold uppercase tracking-wider">Free</span>
+            </div>
           </div>
         </div>
 
-        {/* Typing animation & subtitle */}
-        <div className="text-center border-y border-stone-900 py-6">
+        {/* Title with Typing Animation */}
+        <div className="text-center py-8 border-b border-stone-200">
           <TypingAnimation />
-          <p className="text-xs sm:text-sm text-stone-600 mt-2 italic tracking-widest">
-            Data Engineer
-          </p>
+          <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-stone-600 mt-3">
+            <div className="h-px w-12 bg-stone-300"></div>
+            <p className="uppercase tracking-[0.3em] font-medium">Data Engineer</p>
+            <div className="h-px w-12 bg-stone-300"></div>
+          </div>
         </div>
-
-        {/* Optional test banner */}
-        <div className="bg-red-500 text-white p-4 text-center font-bold">TEST</div>
 
         {/* Navigation */}
-        <nav className="mt-4">
-          <ul className="flex justify-center items-center space-x-6 text-xs sm:text-sm uppercase tracking-wider">
-            <li>
-              <a
-                href="#about"
-                className="text-stone-900 hover:text-stone-600 transition-colors no-underline"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="#work"
-                className="text-stone-900 hover:text-stone-600 transition-colors no-underline hidden sm:inline"
-              >
-                Work
-              </a>
-            </li>
-            <li>
-              <a
-                href="#articles"
-                className="text-stone-900 hover:text-stone-600 transition-colors no-underline"
-              >
-                Articles
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="text-stone-900 hover:text-stone-600 transition-colors no-underline"
-              >
-                Contact
-              </a>
-            </li>
+        <nav className="py-4">
+          <ul className="flex justify-center items-center flex-wrap gap-6 text-xs sm:text-sm uppercase tracking-[0.15em]">
+            {['About', 'Articles', 'Work', 'Contact'].map((item, i) => (
+              <li key={item} className="flex items-center gap-6">
+                {i > 0 && <span className="text-stone-300">•</span>}
+                <a href={`#${item.toLowerCase()}`} className="text-stone-700 hover:text-stone-900 font-medium transition-colors">
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
     </header>
   );
-};
-
-export default Header;
+}
