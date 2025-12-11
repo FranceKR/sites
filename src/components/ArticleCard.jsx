@@ -6,13 +6,6 @@ const ArticleCard = ({ article, onClick }) => {
       onClick={onClick}
       className="border-b border-stone-300 pb-6 cursor-pointer hover:opacity-80 transition-opacity"
     >
-      <div className="mb-3">
-        <img 
-          src={article.image} 
-          alt={article.title}
-          className="w-full h-48 object-cover rounded"
-        />
-      </div>
       <div className="mb-2">
         <span className="text-xs uppercase tracking-wider bg-stone-900 text-white px-2 py-1">
           {article.category}

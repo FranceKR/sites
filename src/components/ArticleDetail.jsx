@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { ArrowLeft } from 'lucide-react';
+import * as Icons from 'lucide-react';
 
 const ArticleDetail = ({ article, onBack }) => {
   return (
@@ -12,7 +12,7 @@ const ArticleDetail = ({ article, onBack }) => {
           onClick={onBack}
           className="flex items-center gap-2 text-stone-700 hover:text-stone-900 mb-6 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <Icons.ArrowLeft className="w-4 h-4" />
           Back to Articles
         </button>
         
@@ -31,12 +31,6 @@ const ArticleDetail = ({ article, onBack }) => {
           <span>•</span>
           <span>{article.date}</span>
         </div>
-        
-        <img 
-          src={article.image} 
-          alt={article.title}
-          className="w-full h-96 object-cover rounded mb-8"
-        />
         
         <div className="prose prose-lg max-w-none">
           {article.content.split('\n\n').map((paragraph, index) => (
